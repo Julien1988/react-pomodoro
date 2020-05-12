@@ -1,0 +1,16 @@
+{
+  "name": "@julien1988/react-pomodoro",
+  "version": "1.0.0",
+  "description": "pomodoro",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "julien1988",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "prettier": "2.0.5"
+  }
+}
