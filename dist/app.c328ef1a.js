@@ -43948,11 +43948,12 @@ var RootComponent = function RootComponent() {
   var handleClickMe = (0, _react.useCallback)(function () {
     return setClickMe(!clickMe);
   }, [clickMe, setClickMe]);
-  var $content; // Gestion du décompte des minutes
+  var $content;
+  var interval; // Gestion du décompte des minutes
 
   var minuterOn = function minuterOn() {
     console.log("décompte en cours");
-    setInterval(timerStart, 1000);
+    interval = setInterval(timerStart, 1000);
   };
 
   var timerStart = function timerStart() {
@@ -43963,7 +43964,7 @@ var RootComponent = function RootComponent() {
 
 
   var minuterOff = function minuterOff() {
-    clearInterval();
+    clearInterval(interval);
     console.log("OFF");
   }; // Logique conditionelle
 
@@ -43975,11 +43976,11 @@ var RootComponent = function RootComponent() {
       onClick: handleClickMe
     }, "Stop");
   } else {
+    //minuterOff();
     $content = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
       className: "btn btn-success",
       onClick: handleClickMe
     }, "Play");
-    minuterOff();
   } // Gestion du Timer
 
 
@@ -44022,7 +44023,7 @@ var RootComponent = function RootComponent() {
         timerMinutesCount = 0;
         state.count = 0;
         $timer = timerMinutesCount + ":" + 0 + 0;
-        return timerMinutesCount;
+        timerMinutesCount;
       }
 
       console.log(timerMinutesCount);

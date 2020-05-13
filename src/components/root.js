@@ -17,11 +17,11 @@ const RootComponent = () => {
   ]);
 
   let $content;
-
+  let interval;
   // Gestion du décompte des minutes
   const minuterOn = () => {
     console.log("décompte en cours");
-    setInterval(timerStart, 1000);
+    interval = setInterval(timerStart, 1000);
   };
 
   const timerStart = () => {
@@ -32,7 +32,7 @@ const RootComponent = () => {
 
   // Annulation du décompte
   const minuterOff = () => {
-    clearInterval();
+    clearInterval(interval);
     console.log("OFF");
   };
 
@@ -46,12 +46,12 @@ const RootComponent = () => {
       </Button>
     );
   } else {
+    //minuterOff();
     $content = (
       <Button className={"btn btn-success"} onClick={handleClickMe}>
         {"Play"}
       </Button>
     );
-    minuterOff();
   }
 
   // Gestion du Timer
@@ -86,7 +86,7 @@ const RootComponent = () => {
         timerMinutesCount = 0;
         state.count = 0;
         $timer = timerMinutesCount + ":" + 0 + 0;
-        return timerMinutesCount;
+        timerMinutesCount;
       }
       console.log(timerMinutesCount);
       $timer = timerMinutesCount + ":" + 0 + 0;
