@@ -43943,17 +43943,11 @@ var RootComponent = function RootComponent() {
   var _useState = (0, _react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       clickMe = _useState2[0],
-      setClickMe = _useState2[1]; // const handleClickMe = useCallback(() => setClickMe(true), [setClickMe]);
+      setClickMe = _useState2[1];
 
-
-  var handleClickMe = function handleClickMe() {
-    if (clickMe != true) {
-      setClickMe(true);
-    } else {
-      setClickMe(false);
-    }
-  };
-
+  var handleClickMe = (0, _react.useCallback)(function () {
+    return setClickMe(!clickMe);
+  }, [clickMe, setClickMe]);
   var $content;
 
   if (clickMe) {
@@ -43982,22 +43976,23 @@ var RootComponent = function RootComponent() {
   }; // Gestion des buttons + et -
 
 
+  var timerMinutesCount;
   var $upButton;
   var $downButton;
   var initialState = {
-    count: 0
+    count: 25
   };
 
   function reducer(state, action) {
     switch (action.type) {
       case "increment":
         return {
-          count: state.count + 1
+          count: state.count + 5
         };
 
       case "decrement":
         return {
-          count: state.count - 1
+          count: state.count - 5
         };
 
       default:
@@ -44005,15 +44000,23 @@ var RootComponent = function RootComponent() {
     }
   }
 
-  function Counter() {
+  var counter = function counter() {
     var _useReducer = (0, _react.useReducer)(reducer, initialState),
         _useReducer2 = _slicedToArray(_useReducer, 2),
         state = _useReducer2[0],
         dispatch = _useReducer2[1];
 
     Total: {
-      state.count;
-      console.log(state.count);
+      timerMinutesCount = state.count;
+
+      if (timerMinutesCount < 0 || timerMinutesCount >= 60) {
+        timerMinutesCount = 0;
+        state.count = 0;
+        $timer = timerMinutesCount + ":" + 0 + 0;
+      }
+
+      console.log(timerMinutesCount);
+      $timer = timerMinutesCount + ":" + 0 + 0;
     }
 
     $upButton = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
@@ -44032,9 +44035,9 @@ var RootComponent = function RootComponent() {
         });
       }
     }, "+");
-  }
+  };
 
-  Counter(); // Affichage du code
+  counter(); // Affichage du code
 
   return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
     fluid: true

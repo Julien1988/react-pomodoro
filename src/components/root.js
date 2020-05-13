@@ -8,17 +8,13 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 const RootComponent = () => {
   // Gestion du click sur le bouton Play / Stop
+
   const [clickMe, setClickMe] = useState(false);
 
-  // const handleClickMe = useCallback(() => setClickMe(true), [setClickMe]);
-
-  const handleClickMe = () => {
-    if (clickMe != true) {
-      setClickMe(true);
-    } else {
-      setClickMe(false);
-    }
-  };
+  const handleClickMe = useCallback(() => setClickMe(!clickMe), [
+    clickMe,
+    setClickMe,
+  ]);
 
   let $content;
 
@@ -47,27 +43,34 @@ const RootComponent = () => {
   };
 
   // Gestion des buttons + et -
+  let timerMinutesCount;
   let $upButton;
   let $downButton;
-  const initialState = { count: 0 };
+  const initialState = { count: 25 };
 
   function reducer(state, action) {
     switch (action.type) {
       case "increment":
-        return { count: state.count + 1 };
+        return { count: state.count + 5 };
       case "decrement":
-        return { count: state.count - 1 };
+        return { count: state.count - 5 };
       default:
         throw new Error();
     }
   }
 
-  function Counter() {
+  const counter = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     Total: {
-      state.count;
-      console.log(state.count);
+      timerMinutesCount = state.count;
+      if (timerMinutesCount < 0 || timerMinutesCount >= 60) {
+        timerMinutesCount = 0;
+        state.count = 0;
+        $timer = timerMinutesCount + ":" + 0 + 0;
+      }
+      console.log(timerMinutesCount);
+      $timer = timerMinutesCount + ":" + 0 + 0;
     }
     $upButton = (
       <Button
@@ -85,8 +88,9 @@ const RootComponent = () => {
         +
       </Button>
     );
-  }
-  Counter();
+  };
+
+  counter();
 
   // Affichage du code
   return (
