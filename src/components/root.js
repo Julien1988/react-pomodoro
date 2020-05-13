@@ -2,7 +2,7 @@
 /src/component.root.js
 */
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useReducer } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 //import classnames from "classnames";
 
@@ -46,6 +46,48 @@ const RootComponent = () => {
     console.log(timer);
   };
 
+  // Gestion des buttons + et -
+  let $upButton;
+  let $downButton;
+  const initialState = { count: 0 };
+
+  function reducer(state, action) {
+    switch (action.type) {
+      case "increment":
+        return { count: state.count + 1 };
+      case "decrement":
+        return { count: state.count - 1 };
+      default:
+        throw new Error();
+    }
+  }
+
+  function Counter() {
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    Total: {
+      state.count;
+      console.log(state.count);
+    }
+    $upButton = (
+      <Button
+        className={"btn btn-primary"}
+        onClick={() => dispatch({ type: "decrement" })}
+      >
+        -
+      </Button>
+    );
+    $downButton = (
+      <Button
+        className={"text-center pl-1 pr-1 pt-1 pb-1"}
+        onClick={() => dispatch({ type: "increment" })}
+      >
+        +
+      </Button>
+    );
+  }
+  Counter();
+
   // Affichage du code
   return (
     <Container fluid>
@@ -73,17 +115,13 @@ const RootComponent = () => {
             {$timer}
           </Col>
           <Row className={"d-block ml-3 mr-3 mt-3 mb-3 pl-3 pr-3 pt-3 pb-3"}>
-            <Col className={"text-center pl-1 pr-1 pt-1 pb-1"}>
-              <Button className={"btn btn-primary"} onClick={timerUpClickMe}>
-                {"+"}
-              </Button>
-            </Col>
+            <Col className={"text-center pl-1 pr-1 pt-1 pb-1"}>{$upButton}</Col>
             <Col className={"text-center pl-1 pr-1 pt-1 pb-1"}>{$content}</Col>
             <Col className={"text-center pl-1 pr-1 pt-1 pb-1"}>
               <Button className={"btn btn-danger"}>{"Reset"}</Button>
             </Col>
             <Col className={"text-center pl-1 pr-1 pt-1 pb-1"}>
-              <Button className={"btn btn-primary"}>{"-"}</Button>
+              {$downButton}
             </Col>
           </Row>
         </Row>

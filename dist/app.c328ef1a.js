@@ -43979,8 +43979,62 @@ var RootComponent = function RootComponent() {
   var timerUpClickMe = function timerUpClickMe() {
     setTimer(timer + 1);
     console.log(timer);
-  }; // Affichage du code
+  }; // Gestion des buttons + et -
 
+
+  var $upButton;
+  var $downButton;
+  var initialState = {
+    count: 0
+  };
+
+  function reducer(state, action) {
+    switch (action.type) {
+      case "increment":
+        return {
+          count: state.count + 1
+        };
+
+      case "decrement":
+        return {
+          count: state.count - 1
+        };
+
+      default:
+        throw new Error();
+    }
+  }
+
+  function Counter() {
+    var _useReducer = (0, _react.useReducer)(reducer, initialState),
+        _useReducer2 = _slicedToArray(_useReducer, 2),
+        state = _useReducer2[0],
+        dispatch = _useReducer2[1];
+
+    Total: {
+      state.count;
+      console.log(state.count);
+    }
+
+    $upButton = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+      className: "btn btn-primary",
+      onClick: function onClick() {
+        return dispatch({
+          type: "decrement"
+        });
+      }
+    }, "-");
+    $downButton = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+      className: "text-center pl-1 pr-1 pt-1 pb-1",
+      onClick: function onClick() {
+        return dispatch({
+          type: "increment"
+        });
+      }
+    }, "+");
+  }
+
+  Counter(); // Affichage du code
 
   return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
     fluid: true
@@ -44001,10 +44055,7 @@ var RootComponent = function RootComponent() {
     className: "d-block ml-3 mr-3 mt-3 mb-3 pl-3 pr-3 pt-3 pb-3"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     className: "text-center pl-1 pr-1 pt-1 pb-1"
-  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
-    className: "btn btn-primary",
-    onClick: timerUpClickMe
-  }, "+")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+  }, $upButton), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     className: "text-center pl-1 pr-1 pt-1 pb-1"
   }, $content), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     className: "text-center pl-1 pr-1 pt-1 pb-1"
@@ -44012,9 +44063,7 @@ var RootComponent = function RootComponent() {
     className: "btn btn-danger"
   }, "Reset")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     className: "text-center pl-1 pr-1 pt-1 pb-1"
-  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
-    className: "btn btn-primary"
-  }, "-"))))));
+  }, $downButton)))));
 };
 
 var _default = RootComponent;
