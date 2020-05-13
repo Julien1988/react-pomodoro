@@ -43963,18 +43963,7 @@ var RootComponent = function RootComponent() {
   } // Gestion du Timer
 
 
-  var _useState3 = (0, _react.useState)(0),
-      _useState4 = _slicedToArray(_useState3, 2),
-      timer = _useState4[0],
-      setTimer = _useState4[1];
-
-  var $timer = "12:34";
-
-  var timerUpClickMe = function timerUpClickMe() {
-    setTimer(timer + 1);
-    console.log(timer);
-  }; // Gestion des buttons + et -
-
+  var $timer = "12:34"; // Gestion des buttons + et -
 
   var timerMinutesCount;
   var $upButton;
@@ -44000,7 +43989,7 @@ var RootComponent = function RootComponent() {
     }
   }
 
-  var counter = function counter() {
+  var timeCounterImcrement = function timeCounterImcrement() {
     var _useReducer = (0, _react.useReducer)(reducer, initialState),
         _useReducer2 = _slicedToArray(_useReducer, 2),
         state = _useReducer2[0],
@@ -44037,7 +44026,7 @@ var RootComponent = function RootComponent() {
     }, "+");
   };
 
-  counter(); // Affichage du code
+  timeCounterImcrement(); // Affichage du code
 
   return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
     fluid: true

@@ -33,14 +33,8 @@ const RootComponent = () => {
   }
 
   // Gestion du Timer
-  const [timer, setTimer] = useState(0);
 
   let $timer = "12:34";
-
-  const timerUpClickMe = () => {
-    setTimer(timer + 1);
-    console.log(timer);
-  };
 
   // Gestion des buttons + et -
   let timerMinutesCount;
@@ -59,7 +53,7 @@ const RootComponent = () => {
     }
   }
 
-  const counter = () => {
+  const timeCounterImcrement = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     Total: {
@@ -90,7 +84,7 @@ const RootComponent = () => {
     );
   };
 
-  counter();
+  timeCounterImcrement();
 
   // Affichage du code
   return (
