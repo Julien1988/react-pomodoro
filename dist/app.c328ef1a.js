@@ -43917,17 +43917,71 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _reactBootstrap = require("react-bootstrap");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
-/*
-/src/component.root.js
-*/
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 //import classnames from "classnames";
 var RootComponent = function RootComponent() {
+  // Gestion du click sur le bouton Play / Stop
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      clickMe = _useState2[0],
+      setClickMe = _useState2[1]; // const handleClickMe = useCallback(() => setClickMe(true), [setClickMe]);
+
+
+  var handleClickMe = function handleClickMe() {
+    if (clickMe != true) {
+      setClickMe(true);
+    } else {
+      setClickMe(false);
+    }
+  };
+
+  var $content;
+
+  if (clickMe) {
+    $content = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+      className: "btn btn-outline-danger",
+      onClick: handleClickMe
+    }, "Stop");
+  } else {
+    $content = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+      className: "btn btn-success",
+      onClick: handleClickMe
+    }, "Play");
+  } // Gestion du Timer
+
+
+  var _useState3 = (0, _react.useState)(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      timer = _useState4[0],
+      setTimer = _useState4[1];
+
+  var $timer = "12:34";
+
+  var timerUpClickMe = function timerUpClickMe() {
+    setTimer(timer + 1);
+    console.log(timer);
+  }; // Affichage du code
+
+
   return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
     fluid: true
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
@@ -43943,28 +43997,23 @@ var RootComponent = function RootComponent() {
     className: "d-flex align-items-center justify-content-center mt-5 mb-5 bg-warning rounded-lg"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     className: "col-md-auto ml-3 mr-3 mt-3 mb-3 pl-3 pr-3 pt-3 pb-3 bg-light rounded-pill"
-  }, "19:59"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
+  }, $timer), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
     className: "d-block ml-3 mr-3 mt-3 mb-3 pl-3 pr-3 pt-3 pb-3"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     className: "text-center pl-1 pr-1 pt-1 pb-1"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    class: "btn btn-primary"
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+    className: "btn btn-primary",
+    onClick: timerUpClickMe
   }, "+")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     className: "text-center pl-1 pr-1 pt-1 pb-1"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    class: "btn btn-success"
-  }, "Play")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+  }, $content), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     className: "text-center pl-1 pr-1 pt-1 pb-1"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    class: "btn btn-danger"
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+    className: "btn btn-danger"
   }, "Reset")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     className: "text-center pl-1 pr-1 pt-1 pb-1"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    class: "btn btn-primary"
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+    className: "btn btn-primary"
   }, "-"))))));
 };
 
@@ -44015,7 +44064,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46627" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41955" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
