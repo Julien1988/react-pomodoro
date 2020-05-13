@@ -44019,9 +44019,14 @@ var RootComponent = function RootComponent() {
     Total: {
       timerMinutesCount = state.count;
 
-      if (timerMinutesCount < 0 || timerMinutesCount >= 60) {
+      if (timerMinutesCount >= 59) {
         timerMinutesCount = 0;
         state.count = 0;
+        $timer = timerMinutesCount + ":" + 0 + 0;
+        timerMinutesCount;
+      } else if (timerMinutesCount < 0) {
+        timerMinutesCount = 60;
+        state.count = 60;
         $timer = timerMinutesCount + ":" + 0 + 0;
         timerMinutesCount;
       }
