@@ -43948,9 +43948,28 @@ var RootComponent = function RootComponent() {
   var handleClickMe = (0, _react.useCallback)(function () {
     return setClickMe(!clickMe);
   }, [clickMe, setClickMe]);
-  var $content;
+  var $content; // Gestion du décompte des minutes
+
+  var minuterOn = function minuterOn() {
+    console.log("décompte en cours");
+    setInterval(timerStart, 1000);
+  };
+
+  var timerStart = function timerStart() {
+    console.log("timeStarter");
+    timerMinutesCount--;
+    console.log(timerMinutesCount);
+  }; // Annulation du décompte
+
+
+  var minuterOff = function minuterOff() {
+    clearInterval();
+    console.log("OFF");
+  }; // Logique conditionelle
+
 
   if (clickMe) {
+    minuterOn();
     $content = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
       className: "btn btn-outline-danger",
       onClick: handleClickMe
@@ -43960,12 +43979,13 @@ var RootComponent = function RootComponent() {
       className: "btn btn-success",
       onClick: handleClickMe
     }, "Play");
+    minuterOff();
   } // Gestion du Timer
 
 
-  var $timer = "12:34"; // Gestion des buttons + et -
+  var $timer; // Gestion des buttons + et -
 
-  var timerMinutesCount;
+  var timerMinutesCount = 25;
   var $upButton;
   var $downButton;
   var initialState = {
@@ -44002,6 +44022,7 @@ var RootComponent = function RootComponent() {
         timerMinutesCount = 0;
         state.count = 0;
         $timer = timerMinutesCount + ":" + 0 + 0;
+        return timerMinutesCount;
       }
 
       console.log(timerMinutesCount);
@@ -44105,7 +44126,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41955" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37867" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -18,7 +18,28 @@ const RootComponent = () => {
 
   let $content;
 
+  // Gestion du décompte des minutes
+  const minuterOn = () => {
+    console.log("décompte en cours");
+    setInterval(timerStart, 1000);
+  };
+
+  const timerStart = () => {
+    console.log("timeStarter");
+    timerMinutesCount--;
+    console.log(timerMinutesCount);
+  };
+
+  // Annulation du décompte
+  const minuterOff = () => {
+    clearInterval();
+    console.log("OFF");
+  };
+
+  // Logique conditionelle
+
   if (clickMe) {
+    minuterOn();
     $content = (
       <Button className={"btn btn-outline-danger"} onClick={handleClickMe}>
         {"Stop"}
@@ -30,14 +51,16 @@ const RootComponent = () => {
         {"Play"}
       </Button>
     );
+    minuterOff();
   }
 
   // Gestion du Timer
 
-  let $timer = "12:34";
+  let $timer;
 
   // Gestion des buttons + et -
-  let timerMinutesCount;
+  let timerMinutesCount = 25;
+
   let $upButton;
   let $downButton;
   const initialState = { count: 25 };
@@ -58,10 +81,12 @@ const RootComponent = () => {
 
     Total: {
       timerMinutesCount = state.count;
+
       if (timerMinutesCount < 0 || timerMinutesCount >= 60) {
         timerMinutesCount = 0;
         state.count = 0;
         $timer = timerMinutesCount + ":" + 0 + 0;
+        return timerMinutesCount;
       }
       console.log(timerMinutesCount);
       $timer = timerMinutesCount + ":" + 0 + 0;
