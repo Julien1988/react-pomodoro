@@ -43948,7 +43948,16 @@ var RootComponent = function RootComponent() {
   var handleClickMe = (0, _react.useCallback)(function () {
     return setClickMe(!clickMe);
   }, [clickMe, setClickMe]);
-  var $content;
+  console.log("clickME : " + clickMe);
+  var $content; // let $content = (
+  //   <Button
+  //     className={"btn btn-outline-danger"}
+  //     onClick={(handleClickMe, minuterOn)}
+  //   >
+  //     {"Stop"}
+  //   </Button>
+  // );
+
   var interval; // Gestion du décompte des minutes
 
   var minuterOn = function minuterOn() {
@@ -43970,17 +43979,19 @@ var RootComponent = function RootComponent() {
 
 
   if (clickMe) {
-    minuterOn();
     $content = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
       className: "btn btn-outline-danger",
       onClick: handleClickMe
     }, "Stop");
+    minuterOn();
+    console.log("clickME STOP: " + clickMe);
   } else {
-    //minuterOff();
     $content = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
       className: "btn btn-success",
       onClick: handleClickMe
     }, "Play");
+    console.log("clickME PLAY : " + clickMe);
+    minuterOff();
   } // Gestion du Timer
 
 
@@ -44132,7 +44143,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37867" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39371" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

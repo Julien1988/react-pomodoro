@@ -16,7 +16,17 @@ const RootComponent = () => {
     setClickMe,
   ]);
 
+  console.log("clickME : " + clickMe);
+
   let $content;
+  // let $content = (
+  //   <Button
+  //     className={"btn btn-outline-danger"}
+  //     onClick={(handleClickMe, minuterOn)}
+  //   >
+  //     {"Stop"}
+  //   </Button>
+  // );
   let interval;
   // Gestion du décompte des minutes
   const minuterOn = () => {
@@ -39,19 +49,22 @@ const RootComponent = () => {
   // Logique conditionelle
 
   if (clickMe) {
-    minuterOn();
     $content = (
       <Button className={"btn btn-outline-danger"} onClick={handleClickMe}>
         {"Stop"}
       </Button>
     );
+    minuterOn();
+
+    console.log("clickME STOP: " + clickMe);
   } else {
-    //minuterOff();
     $content = (
       <Button className={"btn btn-success"} onClick={handleClickMe}>
         {"Play"}
       </Button>
     );
+    console.log("clickME PLAY : " + clickMe);
+    minuterOff();
   }
 
   // Gestion du Timer
