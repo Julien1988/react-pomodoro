@@ -43939,166 +43939,46 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 //import classnames from "classnames";
 var RootComponent = function RootComponent() {
-  // Gestion du click sur le bouton Play / Stop
-  var _useState = (0, _react.useState)(false),
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(Hello, null), ", ", /*#__PURE__*/_react.default.createElement(Timer, null));
+};
+
+var Hello = function Hello() {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Pomodoro"), /*#__PURE__*/_react.default.createElement("h2", null, "Upgrate your time"));
+};
+
+var Timer = function Timer() {
+  var _useState = (0, _react.useState)(25),
       _useState2 = _slicedToArray(_useState, 2),
-      clickMe = _useState2[0],
-      setClickMe = _useState2[1];
+      childCounter = _useState2[0],
+      setChildCounter = _useState2[1];
 
-  var handleClickMe = (0, _react.useCallback)(function () {
-    return setClickMe(!clickMe);
-  }, [clickMe, setClickMe]);
-  console.log("clickME : " + clickMe);
-  var $content; // let $content = (
-  //   <Button
-  //     className={"btn btn-outline-danger"}
-  //     onClick={(handleClickMe, minuterOn)}
-  //   >
-  //     {"Stop"}
-  //   </Button>
-  // );
-
-  var interval; // Gestion du décompte des minutes
-
-  var minuterOn = function minuterOn() {
-    console.log("décompte en cours");
-    interval = setInterval(timerStart, 1000);
-  };
-
-  var timerStart = function timerStart() {
-    console.log("timeStarter");
-    timerMinutesCount--;
-    console.log(timerMinutesCount);
-  }; // Annulation du décompte
-
-
-  var minuterOff = function minuterOff() {
-    clearInterval(interval);
-    console.log("OFF");
-  }; // Logique conditionelle
-
-
-  if (clickMe) {
-    $content = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
-      className: "btn btn-outline-danger",
-      onClick: function onClick() {
-        handleClickMe();
-        minuterOff();
-      }
-    }, "Stop"); //minuterOn();
-
-    console.log("clickME STOP: " + clickMe);
-  } else {
-    $content = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
-      className: "btn btn-success",
-      onClick: function onClick() {
-        handleClickMe();
-        minuterOn();
-      }
-    }, "Play");
-    console.log("clickME PLAY : " + clickMe); //minuterOff();
-  } // Gestion du Timer
-
-
-  var $timer; // Gestion des buttons + et -
-
-  var timerMinutesCount = 25;
-  var $upButton;
-  var $downButton;
-  var initialState = {
-    count: 25
-  };
-
-  function reducer(state, action) {
-    switch (action.type) {
-      case "increment":
-        return {
-          count: state.count + 5
-        };
-
-      case "decrement":
-        return {
-          count: state.count - 5
-        };
-
-      default:
-        throw new Error();
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Time : ".concat(childCounter), " "), /*#__PURE__*/_react.default.createElement(TimeButton, {
+    onSave: function onSave(value) {
+      return setChildCounter(value);
     }
-  }
+  }));
+};
 
-  var timeCounterIncrement = function timeCounterIncrement() {
-    var _useReducer = (0, _react.useReducer)(reducer, initialState),
-        _useReducer2 = _slicedToArray(_useReducer, 2),
-        state = _useReducer2[0],
-        dispatch = _useReducer2[1];
+var TimeButton = function TimeButton(_ref) {
+  var onSave = _ref.onSave;
 
-    Total: {
-      timerMinutesCount = state.count;
+  var _useState3 = (0, _react.useState)(25),
+      _useState4 = _slicedToArray(_useState3, 2),
+      count = _useState4[0],
+      setCount = _useState4[1];
 
-      if (timerMinutesCount >= 59) {
-        timerMinutesCount = 0;
-        state.count = 0;
-        $timer = timerMinutesCount + ":" + 0 + 0;
-        timerMinutesCount;
-      } else if (timerMinutesCount < 0) {
-        timerMinutesCount = 60;
-        state.count = 60;
-        $timer = timerMinutesCount + ":" + 0 + 0;
-        timerMinutesCount;
-      }
-
-      console.log(timerMinutesCount);
-      $timer = timerMinutesCount + ":" + 0 + 0;
+  console.log(count);
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, " vous avez cliquez ", count, " fois"), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: function onClick() {
+      onSave(count + 5);
+      setCount(count + 5);
     }
-
-    $upButton = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
-      className: "btn btn-primary",
-      onClick: function onClick() {
-        return dispatch({
-          type: "decrement"
-        });
-      }
-    }, "-");
-    $downButton = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
-      className: "text-center pl-1 pr-1 pt-1 pb-1",
-      onClick: function onClick() {
-        return dispatch({
-          type: "increment"
-        });
-      }
-    }, "+");
-  };
-
-  timeCounterIncrement(); // Affichage du code
-
-  return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
-    fluid: true
-  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
-    fluid: true,
-    className: "header"
-  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_react.default.createElement("h1", {
-    className: "text-center"
-  }, "Pomodoro"), /*#__PURE__*/_react.default.createElement("h2", {
-    className: "text-center text-uppercase"
-  }, "Upgrate your time")))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
-    className: "main"
-  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
-    className: "d-flex align-items-center justify-content-center mt-5 mb-5 bg-warning rounded-lg"
-  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    className: "col-md-auto ml-3 mr-3 mt-3 mb-3 pl-3 pr-3 pt-3 pb-3 bg-light rounded-pill"
-  }, $timer), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
-    className: "d-block ml-3 mr-3 mt-3 mb-3 pl-3 pr-3 pt-3 pb-3"
-  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    className: "text-center pl-1 pr-1 pt-1 pb-1"
-  }, $upButton), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    className: "text-center pl-1 pr-1 pt-1 pb-1"
-  }, $content), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    className: "text-center pl-1 pr-1 pt-1 pb-1"
-  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
-    className: "btn btn-danger"
-  }, "Reset")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    className: "text-center pl-1 pr-1 pt-1 pb-1"
-  }, $downButton)))));
+  }, "+"), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: function onClick() {
+      onSave(count - 5);
+      setCount(count - 5);
+    }
+  }, "-"));
 };
 
 var _default = RootComponent;
@@ -44148,7 +44028,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39371" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45031" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
