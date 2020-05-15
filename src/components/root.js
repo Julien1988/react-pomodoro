@@ -2,10 +2,16 @@
 /src/component.root.js
 */
 
-import React, { useState, useEffect, useCallback, useReducer } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 //import classnames from "classnames";
 
+// Variable stoquant les données de temps
+let getTimer;
+// Variable stoquant le setInterval
+let intervalVar;
+
+// Lancement de React
 const RootComponent = () => {
   return (
     <>
@@ -14,6 +20,7 @@ const RootComponent = () => {
   );
 };
 
+// Affichage du titre
 const Hello = () => {
   return (
     <div>
@@ -25,20 +32,56 @@ const Hello = () => {
 
 const Timer = () => {
   const [childCounter, setChildCounter] = useState(25);
+
+  // Boucle diminuant le temps restant
+  const incraseTimeCount = () => {
+    console.log("lacement de la fonction setInterval");
+    // setChildCounter(childCounter.valiue - 1);
+    // console.log(childCounter);
+    getTimer = getTimer - 1;
+    console.log(getTimer);
+  };
+
+  // Lancement du timer
+  const timerStart = () => {
+    getTimer = childCounter;
+
+    intervalVar = setInterval(incraseTimeCount, 1000);
+    //intervalVar;
+  };
+
+  // Stoper le timer
+  const timerStop = () => {
+    clearInterval(intervalVar);
+  };
+
   return (
     <div>
-      <h3>{`Time : ${childCounter}`} </h3>
+      <h3>{`Timer : ${childCounter}`} </h3>
       <TimeButton onSave={(value) => setChildCounter(value)} />
+      <button
+        onClick={() => {
+          timerStart(childCounter);
+        }}
+      >
+        Start
+      </button>
+      <button
+        onClick={() => {
+          timerStop();
+        }}
+      >
+        Stop
+      </button>
     </div>
   );
 };
 
 const TimeButton = ({ onSave }) => {
   const [count, setCount] = useState(25);
-  console.log(count);
+
   return (
     <div>
-      <p> vous avez cliquez {count} fois</p>
       <button
         onClick={() => {
           onSave(count + 5);

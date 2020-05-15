@@ -43938,9 +43938,15 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 //import classnames from "classnames";
+// Variable stoquant les données de temps
+var getTimer; // Variable stoquant le setInterval
+
+var intervalVar; // Lancement de React
+
 var RootComponent = function RootComponent() {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(Hello, null), ", ", /*#__PURE__*/_react.default.createElement(Timer, null));
-};
+}; // Affichage du titre
+
 
 var Hello = function Hello() {
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Pomodoro"), /*#__PURE__*/_react.default.createElement("h2", null, "Upgrate your time"));
@@ -43950,13 +43956,41 @@ var Timer = function Timer() {
   var _useState = (0, _react.useState)(25),
       _useState2 = _slicedToArray(_useState, 2),
       childCounter = _useState2[0],
-      setChildCounter = _useState2[1];
+      setChildCounter = _useState2[1]; // Boucle diminuant le temps restant
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Time : ".concat(childCounter), " "), /*#__PURE__*/_react.default.createElement(TimeButton, {
+
+  var incraseTimeCount = function incraseTimeCount() {
+    console.log("lacement de la fonction setInterval"); // setChildCounter(childCounter.valiue - 1);
+    // console.log(childCounter);
+
+    getTimer = getTimer - 1;
+    console.log(getTimer);
+  }; // Lancement du timer
+
+
+  var timerStart = function timerStart() {
+    getTimer = childCounter;
+    intervalVar = setInterval(incraseTimeCount, 1000); //intervalVar;
+  }; // Stoper le timer
+
+
+  var timerStop = function timerStop() {
+    clearInterval(intervalVar);
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Timer : ".concat(childCounter), " "), /*#__PURE__*/_react.default.createElement(TimeButton, {
     onSave: function onSave(value) {
       return setChildCounter(value);
     }
-  }));
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: function onClick() {
+      timerStart(childCounter);
+    }
+  }, "Start"), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: function onClick() {
+      timerStop();
+    }
+  }, "Stop"));
 };
 
 var TimeButton = function TimeButton(_ref) {
@@ -43967,8 +44001,7 @@ var TimeButton = function TimeButton(_ref) {
       count = _useState4[0],
       setCount = _useState4[1];
 
-  console.log(count);
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, " vous avez cliquez ", count, " fois"), /*#__PURE__*/_react.default.createElement("button", {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
       onSave(count + 5);
       setCount(count + 5);
@@ -44028,7 +44061,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45031" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34359" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
