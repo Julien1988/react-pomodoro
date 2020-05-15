@@ -43981,17 +43981,22 @@ var RootComponent = function RootComponent() {
   if (clickMe) {
     $content = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
       className: "btn btn-outline-danger",
-      onClick: handleClickMe
-    }, "Stop");
-    minuterOn();
+      onClick: function onClick() {
+        handleClickMe();
+        minuterOff();
+      }
+    }, "Stop"); //minuterOn();
+
     console.log("clickME STOP: " + clickMe);
   } else {
     $content = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
       className: "btn btn-success",
-      onClick: handleClickMe
+      onClick: function onClick() {
+        handleClickMe();
+        minuterOn();
+      }
     }, "Play");
-    console.log("clickME PLAY : " + clickMe);
-    minuterOff();
+    console.log("clickME PLAY : " + clickMe); //minuterOff();
   } // Gestion du Timer
 
 
@@ -44021,7 +44026,7 @@ var RootComponent = function RootComponent() {
     }
   }
 
-  var timeCounterImcrement = function timeCounterImcrement() {
+  var timeCounterIncrement = function timeCounterIncrement() {
     var _useReducer = (0, _react.useReducer)(reducer, initialState),
         _useReducer2 = _slicedToArray(_useReducer, 2),
         state = _useReducer2[0],
@@ -44064,7 +44069,7 @@ var RootComponent = function RootComponent() {
     }, "+");
   };
 
-  timeCounterImcrement(); // Affichage du code
+  timeCounterIncrement(); // Affichage du code
 
   return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
     fluid: true
