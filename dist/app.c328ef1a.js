@@ -43960,17 +43960,16 @@ var Timer = function Timer() {
 
 
   var incraseTimeCount = function incraseTimeCount() {
-    console.log("lacement de la fonction setInterval"); // setChildCounter(childCounter.valiue - 1);
-    // console.log(childCounter);
+    console.log("lancement de la fonction setInterval"); // getTimer = getTimer - 1;
 
-    getTimer = getTimer - 1;
-    console.log(getTimer);
+    setChildCounter(childCounter - 1);
+    console.log(childCounter);
   }; // Lancement du timer
 
 
   var timerStart = function timerStart() {
-    getTimer = childCounter;
-    intervalVar = setInterval(incraseTimeCount, 1000); //intervalVar;
+    // getTimer = childCounter;
+    intervalVar = setInterval(incraseTimeCount, 1000);
   }; // Stoper le timer
 
 
@@ -43978,7 +43977,9 @@ var Timer = function Timer() {
     clearInterval(intervalVar);
   };
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Timer : ".concat(childCounter), " "), /*#__PURE__*/_react.default.createElement(TimeButton, {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", {
+    className: "timer"
+  }, "Timer : ".concat(childCounter), " "), /*#__PURE__*/_react.default.createElement(TimeButton, {
     onSave: function onSave(value) {
       return setChildCounter(value);
     }
@@ -44003,15 +44004,15 @@ var TimeButton = function TimeButton(_ref) {
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
-      onSave(count + 5);
-      setCount(count + 5);
-    }
-  }, "+"), /*#__PURE__*/_react.default.createElement("button", {
-    onClick: function onClick() {
       onSave(count - 5);
       setCount(count - 5);
     }
-  }, "-"));
+  }, "-"), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: function onClick() {
+      onSave(count + 5);
+      setCount(count + 5);
+    }
+  }, "+"));
 };
 
 var _default = RootComponent;

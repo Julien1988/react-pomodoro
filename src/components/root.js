@@ -35,19 +35,17 @@ const Timer = () => {
 
   // Boucle diminuant le temps restant
   const incraseTimeCount = () => {
-    console.log("lacement de la fonction setInterval");
-    // setChildCounter(childCounter.valiue - 1);
-    // console.log(childCounter);
-    getTimer = getTimer - 1;
-    console.log(getTimer);
+    console.log("lancement de la fonction setInterval");
+    // getTimer = getTimer - 1;
+    setChildCounter(childCounter - 1);
+    console.log(childCounter);
   };
 
   // Lancement du timer
   const timerStart = () => {
-    getTimer = childCounter;
+    // getTimer = childCounter;
 
     intervalVar = setInterval(incraseTimeCount, 1000);
-    //intervalVar;
   };
 
   // Stoper le timer
@@ -57,7 +55,7 @@ const Timer = () => {
 
   return (
     <div>
-      <h3>{`Timer : ${childCounter}`} </h3>
+      <h3 className="timer">{`Timer : ${childCounter}`} </h3>
       <TimeButton onSave={(value) => setChildCounter(value)} />
       <button
         onClick={() => {
@@ -84,19 +82,19 @@ const TimeButton = ({ onSave }) => {
     <div>
       <button
         onClick={() => {
-          onSave(count + 5);
-          setCount(count + 5);
-        }}
-      >
-        +
-      </button>
-      <button
-        onClick={() => {
           onSave(count - 5);
           setCount(count - 5);
         }}
       >
         -
+      </button>
+      <button
+        onClick={() => {
+          onSave(count + 5);
+          setCount(count + 5);
+        }}
+      >
+        +
       </button>
     </div>
   );
