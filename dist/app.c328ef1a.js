@@ -43976,7 +43976,7 @@ var Timer = function Timer() {
   var timerStart = function timerStart() {
     console.log("PLAY");
 
-    if (timerVar == false) {
+    if (timerVar == false && childCounter > 0) {
       setChildCounter(childCounter - 1);
       setMinutesCount(59);
       setTimerVar(true);
@@ -43990,9 +43990,10 @@ var Timer = function Timer() {
 
   var timerEnd = function timerEnd() {
     if (timerEndVar == undefined) {
-      timerEndVar = childCounter;
-    } else if (timerEndVar > 2) {
+      timerEndVar = childCounter - 1;
+    } else if (timerEndVar > 0) {
       timerEndVar--;
+      console.log("coucou");
       console.log(timerEndVar);
     } else {
       timeToTakeABreak();
@@ -44016,8 +44017,9 @@ var Timer = function Timer() {
   var timeToTakeABreak = function timeToTakeABreak() {
     console.log("time to take a break");
     timerStop();
-    window.alert("It's time to take a break !");
+    window.alert("It's time to take a break ! :-)");
     setChildCounter(25);
+    setMinutesCount(0);
   };
 
   (0, _react.useEffect)(function () {
@@ -44026,6 +44028,7 @@ var Timer = function Timer() {
 
     if (timerVar) {
       interval = setInterval(function () {
+        console.log("Lauched");
         setChildCounter(function (childCounter) {
           return childCounter - 1;
         }), timerEnd();
@@ -44090,6 +44093,11 @@ var TimeButton = function TimeButton(_ref) {
     onClick: function onClick() {
       onSave(count - 5);
       setCount(count - 5);
+
+      if (count == 0) {
+        setCount(0);
+        onSave(0);
+      }
     }
   }, "-"), /*#__PURE__*/_react.default.createElement("button", {
     className: "m-2",

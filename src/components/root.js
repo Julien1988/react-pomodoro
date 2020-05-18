@@ -41,7 +41,7 @@ const Timer = () => {
 
   const timerStart = () => {
     console.log("PLAY");
-    if (timerVar == false) {
+    if (timerVar == false && childCounter > 0) {
       setChildCounter(childCounter - 1);
       setMinutesCount(59);
       setTimerVar(true);
@@ -53,9 +53,10 @@ const Timer = () => {
   let timerEndVar;
   const timerEnd = () => {
     if (timerEndVar == undefined) {
-      timerEndVar = childCounter;
-    } else if (timerEndVar > 2) {
+      timerEndVar = childCounter - 1;
+    } else if (timerEndVar > 0) {
       timerEndVar--;
+      console.log("coucou");
       console.log(timerEndVar);
     } else {
       timeToTakeABreak();
@@ -77,8 +78,9 @@ const Timer = () => {
     console.log("time to take a break");
 
     timerStop();
-    window.alert("It's time to take a break !");
+    window.alert("It's time to take a break ! :-)");
     setChildCounter(25);
+    setMinutesCount(0);
   };
 
   useEffect(() => {
@@ -86,6 +88,7 @@ const Timer = () => {
     let minutesCountInterval;
     if (timerVar) {
       interval = setInterval(() => {
+        console.log("Lauched");
         setChildCounter((childCounter) => childCounter - 1), timerEnd();
       }, 60000);
       minutesCountInterval = setInterval(() => {
@@ -147,6 +150,10 @@ const TimeButton = ({ onSave }) => {
         onClick={() => {
           onSave(count - 5);
           setCount(count - 5);
+          if (count == 0) {
+            setCount(0);
+            onSave(0);
+          }
         }}
       >
         -
