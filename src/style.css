@@ -1,7 +1,40 @@
 body {
   min-height: 100%;
+  font-family: "Dancing Script", cursive;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: "Dancing Script", cursive;
+}
+
+h2 {
+  text-transform: uppercase;
 }
 
 #app {
   min-height: 100vh;
+  background: linear-gradient(225deg, #a828b9, #c82fdc);
+  color: white;
+}
+
+button {
+  border-style: none !important;
+  border-radius: 83px !important;
+  box-shadow: -16px 16px 48px #9f25af, 16px -16px 48px #d733ed !important;
+
+  background: linear-gradient(225deg, #c82fdc, #a828b9);
+  color: white;
+  padding: 1em;
+  font-size: 1.5em !important;
+}
+
+button:hover {
+  background: #bb2cce;
+  box-shadow: -16px 16px 48px #9f25af, 16px -16px 48px #d733ed !important;
 }

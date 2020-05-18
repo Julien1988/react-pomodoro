@@ -23,7 +23,7 @@ const RootComponent = () => {
 // Affichage du titre
 const Hello = () => {
   return (
-    <div className="text-center">
+    <div className="text-center pt-5">
       <h1>Pomodoro</h1>
       <h2>Upgrate your time</h2>
     </div>
@@ -108,11 +108,16 @@ const Timer = () => {
   };
 
   return (
-    <div className="text-center">
-      <h3 className="timer">{`Timer : ${childCounter} : ${minutesCount}`} </h3>
-      <TimeButton onSave={(value) => setChildCounter(value)} />
-      <div>
+    <div className="text-center d-flex flex-row justify-content-center">
+      <div className="m-3">
+        <h3 className="timer m-3">
+          {`Timer ${childCounter} : ${minutesCount}`}{" "}
+        </h3>
+        <TimeButton onSave={(value) => setChildCounter(value)} />
+      </div>
+      <div className="m-3 d-flex flex-column justify-content-center">
         <button
+          className="m-2"
           onClick={() => {
             timerStart();
           }}
@@ -120,6 +125,7 @@ const Timer = () => {
           Start
         </button>
         <button
+          className="m-2"
           onClick={() => {
             timerStop();
           }}
@@ -137,6 +143,7 @@ const TimeButton = ({ onSave }) => {
   return (
     <div>
       <button
+        className="m-2"
         onClick={() => {
           onSave(count - 5);
           setCount(count - 5);
@@ -145,6 +152,7 @@ const TimeButton = ({ onSave }) => {
         -
       </button>
       <button
+        className="m-2"
         onClick={() => {
           onSave(count + 5);
           setCount(count + 5);

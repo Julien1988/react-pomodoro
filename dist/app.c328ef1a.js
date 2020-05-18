@@ -43950,7 +43950,7 @@ var RootComponent = function RootComponent() {
 
 var Hello = function Hello() {
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-center"
+    className: "text-center pt-5"
   }, /*#__PURE__*/_react.default.createElement("h1", null, "Pomodoro"), /*#__PURE__*/_react.default.createElement("h2", null, "Upgrate your time"));
 };
 
@@ -44053,18 +44053,24 @@ var Timer = function Timer() {
   };
 
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-center"
+    className: "text-center d-flex flex-row justify-content-center"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "m-3"
   }, /*#__PURE__*/_react.default.createElement("h3", {
-    className: "timer"
-  }, "Timer : ".concat(childCounter, " : ").concat(minutesCount), " "), /*#__PURE__*/_react.default.createElement(TimeButton, {
+    className: "timer m-3"
+  }, "Timer ".concat(childCounter, " : ").concat(minutesCount), " "), /*#__PURE__*/_react.default.createElement(TimeButton, {
     onSave: function onSave(value) {
       return setChildCounter(value);
     }
-  }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: "m-3 d-flex flex-column justify-content-center"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    className: "m-2",
     onClick: function onClick() {
       timerStart();
     }
   }, "Start"), /*#__PURE__*/_react.default.createElement("button", {
+    className: "m-2",
     onClick: function onClick() {
       timerStop();
     }
@@ -44080,11 +44086,13 @@ var TimeButton = function TimeButton(_ref) {
       setCount = _useState8[1];
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+    className: "m-2",
     onClick: function onClick() {
       onSave(count - 5);
       setCount(count - 5);
     }
   }, "-"), /*#__PURE__*/_react.default.createElement("button", {
+    className: "m-2",
     onClick: function onClick() {
       onSave(count + 5);
       setCount(count + 5);
