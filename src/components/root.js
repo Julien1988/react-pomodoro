@@ -23,7 +23,7 @@ const RootComponent = () => {
 // Affichage du titre
 const Hello = () => {
   return (
-    <div>
+    <div className="text-center pt-5">
       <h1>Pomodoro</h1>
       <h2>Upgrate your time</h2>
     </div>
@@ -41,7 +41,7 @@ const Timer = () => {
 
   const timerStart = () => {
     console.log("PLAY");
-    if (timerVar == false) {
+    if (timerVar == false && childCounter > 0) {
       setChildCounter(childCounter - 1);
       setMinutesCount(59);
       setTimerVar(true);
@@ -53,9 +53,10 @@ const Timer = () => {
   let timerEndVar;
   const timerEnd = () => {
     if (timerEndVar == undefined) {
-      timerEndVar = childCounter;
-    } else if (timerEndVar > 2) {
+      timerEndVar = childCounter - 1;
+    } else if (timerEndVar > 0) {
       timerEndVar--;
+      console.log("coucou");
       console.log(timerEndVar);
     } else {
       timeToTakeABreak();
@@ -77,8 +78,9 @@ const Timer = () => {
     console.log("time to take a break");
 
     timerStop();
-    window.alert("It's time to take a break !");
+    window.alert("It's time to take a break ! :-)");
     setChildCounter(25);
+    setMinutesCount(0);
   };
 
   useEffect(() => {
@@ -86,6 +88,7 @@ const Timer = () => {
     let minutesCountInterval;
     if (timerVar) {
       interval = setInterval(() => {
+        console.log("Lauched");
         setChildCounter((childCounter) => childCounter - 1), timerEnd();
       }, 60000);
       minutesCountInterval = setInterval(() => {
@@ -108,23 +111,31 @@ const Timer = () => {
   };
 
   return (
-    <div>
-      <h3 className="timer">{`Timer : ${childCounter} : ${minutesCount}`} </h3>
-      <TimeButton onSave={(value) => setChildCounter(value)} />
-      <button
-        onClick={() => {
-          timerStart();
-        }}
-      >
-        Start
-      </button>
-      <button
-        onClick={() => {
-          timerStop();
-        }}
-      >
-        Stop
-      </button>
+    <div className="text-center d-flex flex-row justify-content-center">
+      <div className="m-3">
+        <h3 className="timer m-3">
+          {`Timer ${childCounter} : ${minutesCount}`}{" "}
+        </h3>
+        <TimeButton onSave={(value) => setChildCounter(value)} />
+      </div>
+      <div className="m-3 d-flex flex-column justify-content-center">
+        <button
+          className="m-2"
+          onClick={() => {
+            timerStart();
+          }}
+        >
+          Start
+        </button>
+        <button
+          className="m-2"
+          onClick={() => {
+            timerStop();
+          }}
+        >
+          Stop
+        </button>
+      </div>
     </div>
   );
 };
@@ -135,14 +146,20 @@ const TimeButton = ({ onSave }) => {
   return (
     <div>
       <button
+        className="m-2"
         onClick={() => {
           onSave(count - 5);
           setCount(count - 5);
+          if (count == 0) {
+            setCount(0);
+            onSave(0);
+          }
         }}
       >
         -
       </button>
       <button
+        className="m-2"
         onClick={() => {
           onSave(count + 5);
           setCount(count + 5);
