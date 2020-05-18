@@ -37,7 +37,7 @@ const Timer = () => {
   // Lancement du timer
 
   const timerStart = () => {
-    console.log("j'ai appuyé");
+    console.log("PLAY");
     if (timerVar == false) {
       setTimerVar(true);
       console.log(timerVar);
@@ -45,12 +45,25 @@ const Timer = () => {
       console.log(timerVar);
     }
   };
+  let timerEndVar;
+  const timerEnd = () => {
+    if (timerEndVar == undefined) {
+      timerEndVar = childCounter;
+    } else if (timerEndVar > 2) {
+      timerEndVar--;
+      console.log(timerEndVar);
+    } else {
+      console.log("TERMINE");
+      timerStop();
+      window.alert("PAUSE");
+    }
+  };
 
   useEffect(() => {
     let interval;
     if (timerVar) {
       interval = setInterval(() => {
-        setChildCounter((childCounter) => childCounter - 1);
+        setChildCounter((childCounter) => childCounter - 1), timerEnd();
       }, 1000);
     }
     return () => clearInterval(interval);
@@ -59,6 +72,7 @@ const Timer = () => {
   // Stoper le timer
 
   const timerStop = () => {
+    console.log("STOP");
     return setTimerVar(false);
   };
 

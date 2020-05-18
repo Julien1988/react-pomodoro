@@ -43965,13 +43965,28 @@ var Timer = function Timer() {
 
 
   var timerStart = function timerStart() {
-    console.log("j'ai appuyé");
+    console.log("PLAY");
 
     if (timerVar == false) {
       setTimerVar(true);
       console.log(timerVar);
     } else {
       console.log(timerVar);
+    }
+  };
+
+  var timerEndVar;
+
+  var timerEnd = function timerEnd() {
+    if (timerEndVar == undefined) {
+      timerEndVar = childCounter;
+    } else if (timerEndVar > 2) {
+      timerEndVar--;
+      console.log(timerEndVar);
+    } else {
+      console.log("TERMINE");
+      timerStop();
+      window.alert("PAUSE");
     }
   };
 
@@ -43982,7 +43997,7 @@ var Timer = function Timer() {
       interval = setInterval(function () {
         setChildCounter(function (childCounter) {
           return childCounter - 1;
-        });
+        }), timerEnd();
       }, 1000);
     }
 
@@ -43992,6 +44007,7 @@ var Timer = function Timer() {
   }, [timerVar]); // Stoper le timer
 
   var timerStop = function timerStop() {
+    console.log("STOP");
     return setTimerVar(false);
   };
 
