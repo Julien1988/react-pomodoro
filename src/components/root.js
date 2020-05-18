@@ -36,15 +36,15 @@ const Timer = () => {
   // Boucle diminuant le temps restant
   const incraseTimeCount = () => {
     console.log("lancement de la fonction setInterval");
-    // getTimer = getTimer - 1;
+
     setChildCounter(childCounter - 1);
     console.log(childCounter);
   };
 
   // Lancement du timer
-  const timerStart = () => {
-    // getTimer = childCounter;
 
+  useEffect(() => {});
+  const timerStart = () => {
     intervalVar = setInterval(incraseTimeCount, 1000);
   };
 

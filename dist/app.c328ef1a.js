@@ -43960,15 +43960,15 @@ var Timer = function Timer() {
 
 
   var incraseTimeCount = function incraseTimeCount() {
-    console.log("lancement de la fonction setInterval"); // getTimer = getTimer - 1;
-
+    console.log("lancement de la fonction setInterval");
     setChildCounter(childCounter - 1);
     console.log(childCounter);
   }; // Lancement du timer
 
 
+  (0, _react.useEffect)(function () {});
+
   var timerStart = function timerStart() {
-    // getTimer = childCounter;
     intervalVar = setInterval(incraseTimeCount, 1000);
   }; // Stoper le timer
 
@@ -44062,7 +44062,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34359" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46117" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
