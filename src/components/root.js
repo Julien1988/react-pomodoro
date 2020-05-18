@@ -34,11 +34,16 @@ const Timer = () => {
   const [childCounter, setChildCounter] = useState(25);
   const [timerVar, setTimerVar] = useState(false);
 
+  const [minutesCount, setMinutesCount] = useState(0);
+  // let tenMinutesCount = 0;
+  // let minutesCount = 0;
   // Lancement du timer
 
   const timerStart = () => {
     console.log("PLAY");
     if (timerVar == false) {
+      setChildCounter(childCounter - 1);
+      setMinutesCount(59);
       setTimerVar(true);
       console.log(timerVar);
     } else {
@@ -53,23 +58,49 @@ const Timer = () => {
       timerEndVar--;
       console.log(timerEndVar);
     } else {
-      console.log("TERMINE");
-      timerStop();
-      window.alert("PAUSE");
+      timeToTakeABreak();
     }
+  };
+  let minutesCountVar;
+  const secondTimer = () => {
+    console.log(minutesCount);
+    if (minutesCountVar == undefined || minutesCountVar == 0) {
+      minutesCountVar = 59;
+      setMinutesCount(59);
+    } else {
+      minutesCountVar--;
+      console.log(minutesCountVar);
+    }
+  };
+
+  const timeToTakeABreak = () => {
+    console.log("time to take a break");
+
+    timerStop();
+    window.alert("It's time to take a break !");
+    setChildCounter(25);
   };
 
   useEffect(() => {
     let interval;
+    let minutesCountInterval;
     if (timerVar) {
       interval = setInterval(() => {
         setChildCounter((childCounter) => childCounter - 1), timerEnd();
+      }, 60000);
+      minutesCountInterval = setInterval(() => {
+        setMinutesCount((minutesCount) => minutesCount - 1), secondTimer();
       }, 1000);
     }
-    return () => clearInterval(interval);
+    return () => stopAll(interval, minutesCountInterval);
   }, [timerVar]);
 
   // Stoper le timer
+
+  const stopAll = (interval, minutesCountInterval) => {
+    clearInterval(interval);
+    clearInterval(minutesCountInterval);
+  };
 
   const timerStop = () => {
     console.log("STOP");
@@ -78,7 +109,7 @@ const Timer = () => {
 
   return (
     <div>
-      <h3 className="timer">{`Timer : ${childCounter}`} </h3>
+      <h3 className="timer">{`Timer : ${childCounter} : ${minutesCount}`} </h3>
       <TimeButton onSave={(value) => setChildCounter(value)} />
       <button
         onClick={() => {

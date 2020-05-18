@@ -43961,13 +43961,22 @@ var Timer = function Timer() {
   var _useState3 = (0, _react.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
       timerVar = _useState4[0],
-      setTimerVar = _useState4[1]; // Lancement du timer
+      setTimerVar = _useState4[1];
+
+  var _useState5 = (0, _react.useState)(0),
+      _useState6 = _slicedToArray(_useState5, 2),
+      minutesCount = _useState6[0],
+      setMinutesCount = _useState6[1]; // let tenMinutesCount = 0;
+  // let minutesCount = 0;
+  // Lancement du timer
 
 
   var timerStart = function timerStart() {
     console.log("PLAY");
 
     if (timerVar == false) {
+      setChildCounter(childCounter - 1);
+      setMinutesCount(59);
       setTimerVar(true);
       console.log(timerVar);
     } else {
@@ -43984,27 +43993,57 @@ var Timer = function Timer() {
       timerEndVar--;
       console.log(timerEndVar);
     } else {
-      console.log("TERMINE");
-      timerStop();
-      window.alert("PAUSE");
+      timeToTakeABreak();
     }
+  };
+
+  var minutesCountVar;
+
+  var secondTimer = function secondTimer() {
+    console.log(minutesCount);
+
+    if (minutesCountVar == undefined || minutesCountVar == 0) {
+      minutesCountVar = 59;
+      setMinutesCount(59);
+    } else {
+      minutesCountVar--;
+      console.log(minutesCountVar);
+    }
+  };
+
+  var timeToTakeABreak = function timeToTakeABreak() {
+    console.log("time to take a break");
+    timerStop();
+    window.alert("It's time to take a break !");
+    setChildCounter(25);
   };
 
   (0, _react.useEffect)(function () {
     var interval;
+    var minutesCountInterval;
 
     if (timerVar) {
       interval = setInterval(function () {
         setChildCounter(function (childCounter) {
           return childCounter - 1;
         }), timerEnd();
+      }, 60000);
+      minutesCountInterval = setInterval(function () {
+        setMinutesCount(function (minutesCount) {
+          return minutesCount - 1;
+        }), secondTimer();
       }, 1000);
     }
 
     return function () {
-      return clearInterval(interval);
+      return stopAll(interval, minutesCountInterval);
     };
   }, [timerVar]); // Stoper le timer
+
+  var stopAll = function stopAll(interval, minutesCountInterval) {
+    clearInterval(interval);
+    clearInterval(minutesCountInterval);
+  };
 
   var timerStop = function timerStop() {
     console.log("STOP");
@@ -44013,7 +44052,7 @@ var Timer = function Timer() {
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", {
     className: "timer"
-  }, "Timer : ".concat(childCounter), " "), /*#__PURE__*/_react.default.createElement(TimeButton, {
+  }, "Timer : ".concat(childCounter, " : ").concat(minutesCount), " "), /*#__PURE__*/_react.default.createElement(TimeButton, {
     onSave: function onSave(value) {
       return setChildCounter(value);
     }
@@ -44031,10 +44070,10 @@ var Timer = function Timer() {
 var TimeButton = function TimeButton(_ref) {
   var onSave = _ref.onSave;
 
-  var _useState5 = (0, _react.useState)(25),
-      _useState6 = _slicedToArray(_useState5, 2),
-      count = _useState6[0],
-      setCount = _useState6[1];
+  var _useState7 = (0, _react.useState)(25),
+      _useState8 = _slicedToArray(_useState7, 2),
+      count = _useState8[0],
+      setCount = _useState8[1];
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
@@ -44096,7 +44135,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46117" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43471" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
