@@ -43937,12 +43937,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-//import classnames from "classnames";
-// Variable stoquant les données de temps
-var getTimer; // Variable stoquant le setInterval
-
-var intervalVar; // Lancement de React
-
+// Lancement de React
 var RootComponent = function RootComponent() {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(Hello, null), ", ", /*#__PURE__*/_react.default.createElement(Timer, null));
 }; // Affichage du titre
@@ -43968,22 +43963,17 @@ var Timer = function Timer() {
   var _useState5 = (0, _react.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
       minutesCount = _useState6[0],
-      setMinutesCount = _useState6[1]; // let tenMinutesCount = 0;
-  // let minutesCount = 0;
-  // Lancement du timer
+      setMinutesCount = _useState6[1]; // Lancement du timer
 
 
   var timerStart = function timerStart() {
-    console.log("PLAY");
-
+    //console.log("PLAY");
     if (timerVar == false && childCounter > 0) {
       setChildCounter(childCounter - 1);
       setMinutesCount(59);
-      setTimerVar(true);
-      console.log(timerVar);
-    } else {
-      console.log(timerVar);
-    }
+      setTimerVar(true); // console.log(timerVar);
+    } else {// console.log(timerVar);
+      }
   };
 
   var timerEndVar;
@@ -43992,9 +43982,7 @@ var Timer = function Timer() {
     if (timerEndVar == undefined) {
       timerEndVar = childCounter - 1;
     } else if (timerEndVar > 0) {
-      timerEndVar--;
-      console.log("coucou");
-      console.log(timerEndVar);
+      timerEndVar--; //console.log(timerEndVar);
     } else {
       timeToTakeABreak();
     }
@@ -44003,19 +43991,17 @@ var Timer = function Timer() {
   var minutesCountVar;
 
   var secondTimer = function secondTimer() {
-    console.log(minutesCount);
-
+    //console.log(minutesCount);
     if (minutesCountVar == undefined || minutesCountVar == 0) {
       minutesCountVar = 59;
       setMinutesCount(59);
     } else {
-      minutesCountVar--;
-      console.log(minutesCountVar);
+      minutesCountVar--; //console.log(minutesCountVar);
     }
   };
 
   var timeToTakeABreak = function timeToTakeABreak() {
-    console.log("time to take a break");
+    //console.log("time to take a break");
     timerStop();
     window.alert("It's time to take a break ! :-)");
     setChildCounter(25);
@@ -44028,7 +44014,7 @@ var Timer = function Timer() {
 
     if (timerVar) {
       interval = setInterval(function () {
-        console.log("Lauched");
+        //console.log("Lauched");
         setChildCounter(function (childCounter) {
           return childCounter - 1;
         }), timerEnd();
@@ -44051,7 +44037,7 @@ var Timer = function Timer() {
   };
 
   var timerStop = function timerStop() {
-    console.log("STOP");
+    //console.log("STOP");
     return setTimerVar(false);
   };
 

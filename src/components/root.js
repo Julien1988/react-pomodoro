@@ -4,12 +4,6 @@
 
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-//import classnames from "classnames";
-
-// Variable stoquant les données de temps
-let getTimer;
-// Variable stoquant le setInterval
-let intervalVar;
 
 // Lancement de React
 const RootComponent = () => {
@@ -35,19 +29,18 @@ const Timer = () => {
   const [timerVar, setTimerVar] = useState(false);
 
   const [minutesCount, setMinutesCount] = useState(0);
-  // let tenMinutesCount = 0;
-  // let minutesCount = 0;
+
   // Lancement du timer
 
   const timerStart = () => {
-    console.log("PLAY");
+    //console.log("PLAY");
     if (timerVar == false && childCounter > 0) {
       setChildCounter(childCounter - 1);
       setMinutesCount(59);
       setTimerVar(true);
-      console.log(timerVar);
+      // console.log(timerVar);
     } else {
-      console.log(timerVar);
+      // console.log(timerVar);
     }
   };
   let timerEndVar;
@@ -56,26 +49,26 @@ const Timer = () => {
       timerEndVar = childCounter - 1;
     } else if (timerEndVar > 0) {
       timerEndVar--;
-      console.log("coucou");
-      console.log(timerEndVar);
+
+      //console.log(timerEndVar);
     } else {
       timeToTakeABreak();
     }
   };
   let minutesCountVar;
   const secondTimer = () => {
-    console.log(minutesCount);
+    //console.log(minutesCount);
     if (minutesCountVar == undefined || minutesCountVar == 0) {
       minutesCountVar = 59;
       setMinutesCount(59);
     } else {
       minutesCountVar--;
-      console.log(minutesCountVar);
+      //console.log(minutesCountVar);
     }
   };
 
   const timeToTakeABreak = () => {
-    console.log("time to take a break");
+    //console.log("time to take a break");
 
     timerStop();
     window.alert("It's time to take a break ! :-)");
@@ -88,7 +81,7 @@ const Timer = () => {
     let minutesCountInterval;
     if (timerVar) {
       interval = setInterval(() => {
-        console.log("Lauched");
+        //console.log("Lauched");
         setChildCounter((childCounter) => childCounter - 1), timerEnd();
       }, 60000);
       minutesCountInterval = setInterval(() => {
@@ -106,7 +99,7 @@ const Timer = () => {
   };
 
   const timerStop = () => {
-    console.log("STOP");
+    //console.log("STOP");
     return setTimerVar(false);
   };
 
