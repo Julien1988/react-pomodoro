@@ -23,7 +23,7 @@ const RootComponent = () => {
 // Affichage du titre
 const Hello = () => {
   return (
-    <div>
+    <div className="text-center">
       <h1>Pomodoro</h1>
       <h2>Upgrate your time</h2>
     </div>
@@ -108,23 +108,25 @@ const Timer = () => {
   };
 
   return (
-    <div>
+    <div className="text-center">
       <h3 className="timer">{`Timer : ${childCounter} : ${minutesCount}`} </h3>
       <TimeButton onSave={(value) => setChildCounter(value)} />
-      <button
-        onClick={() => {
-          timerStart();
-        }}
-      >
-        Start
-      </button>
-      <button
-        onClick={() => {
-          timerStop();
-        }}
-      >
-        Stop
-      </button>
+      <div>
+        <button
+          onClick={() => {
+            timerStart();
+          }}
+        >
+          Start
+        </button>
+        <button
+          onClick={() => {
+            timerStop();
+          }}
+        >
+          Stop
+        </button>
+      </div>
     </div>
   );
 };

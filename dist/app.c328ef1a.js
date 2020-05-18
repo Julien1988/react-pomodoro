@@ -43949,7 +43949,9 @@ var RootComponent = function RootComponent() {
 
 
 var Hello = function Hello() {
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Pomodoro"), /*#__PURE__*/_react.default.createElement("h2", null, "Upgrate your time"));
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "text-center"
+  }, /*#__PURE__*/_react.default.createElement("h1", null, "Pomodoro"), /*#__PURE__*/_react.default.createElement("h2", null, "Upgrate your time"));
 };
 
 var Timer = function Timer() {
@@ -44050,13 +44052,15 @@ var Timer = function Timer() {
     return setTimerVar(false);
   };
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "text-center"
+  }, /*#__PURE__*/_react.default.createElement("h3", {
     className: "timer"
   }, "Timer : ".concat(childCounter, " : ").concat(minutesCount), " "), /*#__PURE__*/_react.default.createElement(TimeButton, {
     onSave: function onSave(value) {
       return setChildCounter(value);
     }
-  }), /*#__PURE__*/_react.default.createElement("button", {
+  }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
       timerStart();
     }
@@ -44064,7 +44068,7 @@ var Timer = function Timer() {
     onClick: function onClick() {
       timerStop();
     }
-  }, "Stop"));
+  }, "Stop")));
 };
 
 var TimeButton = function TimeButton(_ref) {
@@ -44135,7 +44139,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43471" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39973" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
