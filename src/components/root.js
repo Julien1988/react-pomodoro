@@ -34,8 +34,6 @@ const Timer = () => {
   const [childCounter, setChildCounter] = useState(25);
   const [timerVar, setTimerVar] = useState(false);
 
-  // Boucle diminuant le temps restant
-
   // Lancement du timer
 
   const timerStart = () => {
@@ -58,19 +56,10 @@ const Timer = () => {
     return () => clearInterval(interval);
   }, [timerVar]);
 
-  //   useEffect(() => {
-  //     let interval;
-  //     if (isRunning) {
-  //         interval = setInterval(() => {
-  //             setTimer((prevTimer) => prevTimer - 1);
-  //         }, 1000);
-  //     }
-  //     return () => clearInterval(interval);
-  // }, [isRunning]);
-
   // Stoper le timer
+
   const timerStop = () => {
-    clearInterval(intervalVar);
+    return setTimerVar(false);
   };
 
   return (

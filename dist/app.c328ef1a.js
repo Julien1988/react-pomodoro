@@ -43961,8 +43961,7 @@ var Timer = function Timer() {
   var _useState3 = (0, _react.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
       timerVar = _useState4[0],
-      setTimerVar = _useState4[1]; // Boucle diminuant le temps restant
-  // Lancement du timer
+      setTimerVar = _useState4[1]; // Lancement du timer
 
 
   var timerStart = function timerStart() {
@@ -43990,19 +43989,10 @@ var Timer = function Timer() {
     return function () {
       return clearInterval(interval);
     };
-  }, [timerVar]); //   useEffect(() => {
-  //     let interval;
-  //     if (isRunning) {
-  //         interval = setInterval(() => {
-  //             setTimer((prevTimer) => prevTimer - 1);
-  //         }, 1000);
-  //     }
-  //     return () => clearInterval(interval);
-  // }, [isRunning]);
-  // Stoper le timer
+  }, [timerVar]); // Stoper le timer
 
   var timerStop = function timerStop() {
-    clearInterval(intervalVar);
+    return setTimerVar(false);
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", {
