@@ -32,21 +32,41 @@ const Hello = () => {
 
 const Timer = () => {
   const [childCounter, setChildCounter] = useState(25);
+  const [timerVar, setTimerVar] = useState(false);
 
   // Boucle diminuant le temps restant
-  const incraseTimeCount = () => {
-    console.log("lancement de la fonction setInterval");
-
-    setChildCounter(childCounter - 1);
-    console.log(childCounter);
-  };
 
   // Lancement du timer
 
-  useEffect(() => {});
   const timerStart = () => {
-    intervalVar = setInterval(incraseTimeCount, 1000);
+    console.log("j'ai appuyé");
+    if (timerVar == false) {
+      setTimerVar(true);
+      console.log(timerVar);
+    } else {
+      console.log(timerVar);
+    }
   };
+
+  useEffect(() => {
+    let interval;
+    if (timerVar) {
+      interval = setInterval(() => {
+        setChildCounter((childCounter) => childCounter - 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [timerVar]);
+
+  //   useEffect(() => {
+  //     let interval;
+  //     if (isRunning) {
+  //         interval = setInterval(() => {
+  //             setTimer((prevTimer) => prevTimer - 1);
+  //         }, 1000);
+  //     }
+  //     return () => clearInterval(interval);
+  // }, [isRunning]);
 
   // Stoper le timer
   const timerStop = () => {
@@ -59,7 +79,7 @@ const Timer = () => {
       <TimeButton onSave={(value) => setChildCounter(value)} />
       <button
         onClick={() => {
-          timerStart(childCounter);
+          timerStart();
         }}
       >
         Start

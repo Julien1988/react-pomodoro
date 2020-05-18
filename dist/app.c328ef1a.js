@@ -43956,22 +43956,50 @@ var Timer = function Timer() {
   var _useState = (0, _react.useState)(25),
       _useState2 = _slicedToArray(_useState, 2),
       childCounter = _useState2[0],
-      setChildCounter = _useState2[1]; // Boucle diminuant le temps restant
+      setChildCounter = _useState2[1];
 
+  var _useState3 = (0, _react.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      timerVar = _useState4[0],
+      setTimerVar = _useState4[1]; // Boucle diminuant le temps restant
+  // Lancement du timer
 
-  var incraseTimeCount = function incraseTimeCount() {
-    console.log("lancement de la fonction setInterval");
-    setChildCounter(childCounter - 1);
-    console.log(childCounter);
-  }; // Lancement du timer
-
-
-  (0, _react.useEffect)(function () {});
 
   var timerStart = function timerStart() {
-    intervalVar = setInterval(incraseTimeCount, 1000);
-  }; // Stoper le timer
+    console.log("j'ai appuyé");
 
+    if (timerVar == false) {
+      setTimerVar(true);
+      console.log(timerVar);
+    } else {
+      console.log(timerVar);
+    }
+  };
+
+  (0, _react.useEffect)(function () {
+    var interval;
+
+    if (timerVar) {
+      interval = setInterval(function () {
+        setChildCounter(function (childCounter) {
+          return childCounter - 1;
+        });
+      }, 1000);
+    }
+
+    return function () {
+      return clearInterval(interval);
+    };
+  }, [timerVar]); //   useEffect(() => {
+  //     let interval;
+  //     if (isRunning) {
+  //         interval = setInterval(() => {
+  //             setTimer((prevTimer) => prevTimer - 1);
+  //         }, 1000);
+  //     }
+  //     return () => clearInterval(interval);
+  // }, [isRunning]);
+  // Stoper le timer
 
   var timerStop = function timerStop() {
     clearInterval(intervalVar);
@@ -43985,7 +44013,7 @@ var Timer = function Timer() {
     }
   }), /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
-      timerStart(childCounter);
+      timerStart();
     }
   }, "Start"), /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
@@ -43997,10 +44025,10 @@ var Timer = function Timer() {
 var TimeButton = function TimeButton(_ref) {
   var onSave = _ref.onSave;
 
-  var _useState3 = (0, _react.useState)(25),
-      _useState4 = _slicedToArray(_useState3, 2),
-      count = _useState4[0],
-      setCount = _useState4[1];
+  var _useState5 = (0, _react.useState)(25),
+      _useState6 = _slicedToArray(_useState5, 2),
+      count = _useState6[0],
+      setCount = _useState6[1];
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
